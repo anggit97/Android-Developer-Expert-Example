@@ -8,4 +8,10 @@
     <string name="message_result">Hasil</string>
     <string name="message_activity_move">Ini activity move</string>
     <string name="message_activity_with_data">Activity With Data</string>
+    <string name="message_header_move_for_result">Pilih angka yang kamu inginkan :</string>
+    <string name="_50">50</string>
+    <string name="_100">100</string>
+    <string name="_150">150</string>
+    <string name="_200">200</string>
+    <string name="message_choose">Pilih</string>
 </resources>

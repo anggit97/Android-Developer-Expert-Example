@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".MoveActivity" />
         <activity android:name=".ActivityWithDataActivity" />
-        <activity android:name=".MoveDataWithObjectActivity"></activity>
+        <activity android:name=".MoveDataWithObjectActivity" />
+        <activity android:name=".MoveForResultActivity"></activity>
     </application>
 
 </manifest>

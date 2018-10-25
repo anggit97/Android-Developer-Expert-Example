@@ -1,6 +1,8 @@
 package com.anggitprayogo.dicoding.latihanintent;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button btnMove, btnMoveWithData, btnMoveWithObject, btnDialNumber, btnMoveWithResult;
     TextView tvResult;
+
+    private static final int REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnMoveWithObject.setOnClickListener(this);
         btnMoveWithResult.setOnClickListener(this);
         btnDialNumber.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE){
+            if (resultCode == MoveForResultActivity.RESULT_CODE){
+                int result = 0;
+                if (data != null) {
+                    result = data.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0);
+                    tvResult.setText("Hasil : "+result);
+                }
+            }
+        }
     }
 
     @Override
@@ -56,8 +75,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(toMoveWithObject);
                 break;
             case R.id.btn_move_with_result:
+                Intent toMoveWithResult = new Intent(MainActivity.this, MoveForResultActivity.class);
+                startActivityForResult(toMoveWithResult, REQUEST_CODE);
                 break;
             case R.id.btn_dial_number:
+                String phoneNumber = "085946057839";
+                Intent dialPhoneNumber = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+phoneNumber));
+                startActivity(dialPhoneNumber);
                 break;
         }
     }
