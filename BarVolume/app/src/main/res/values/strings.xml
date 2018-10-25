@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BarVolume</string>
+    <string name="message_hint_lebar">Masukan lebar</string>
+    <string name="message_hint_panjang">Masukan panjang</string>
+    <string name="message_hint_tinggi">Masukan tinggi</string>
+    <string name="message_hitung_volume">Hitung Volume</string>
+    <string name="message_resull">Hasil</string>
+</resources>
