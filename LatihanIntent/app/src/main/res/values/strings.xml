@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LatihanIntent</string>
+    <string name="message_intent_move">Pindah Activity</string>
+    <string name="message_intent_move_with_data">Pindah Activity dengan Data</string>
+    <string name="message_intent_move_with_object">Pindah Activity dengan Object</string>
+    <string name="message_intent_dial_number">Dial Number</string>
+    <string name="message_intent_move_with_result">Pindah Activity dengan Result</string>
+    <string name="message_result">Hasil</string>
+    <string name="message_activity_move">Ini activity move</string>
+    <string name="message_activity_with_data">Activity With Data</string>
+</resources>
