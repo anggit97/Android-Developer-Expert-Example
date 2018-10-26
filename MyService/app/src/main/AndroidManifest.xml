@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.anggitprayogo.dicoding.myflexiblefragment">
+    package="com.anggitprayogo.dicoding.myservice">
 
     <application
         android:allowBackup="true"
@@ -16,7 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileActivity"></activity>
+
+        <service
+            android:name=".OriginService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".OriginIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.anggitprayogo.dicoding.myflexiblefragment.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anggitprayogo.dicoding.myflexiblefragment.ProfileActivity;
 import com.anggitprayogo.dicoding.myflexiblefragment.R;
 
 public class DetailCategoryFragment extends Fragment implements View.OnClickListener{
@@ -75,6 +77,8 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
             case R.id.tv_category_description:
                 break;
             case R.id.btn_profile:
+                Intent toProfileActivity = new Intent(getActivity(), ProfileActivity.class);
+                startActivity(toProfileActivity);
                 break;
             case R.id.btn_show_dialog:
 
