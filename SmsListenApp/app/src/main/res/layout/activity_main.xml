@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_16"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
@@ -9,8 +11,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/dimmen_10"
         android:textColor="@android:color/black"
         android:text="Ini harusnya pesan dari sms"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btn_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimmen_10"
+        android:layout_marginBottom="@dimen/dimmen_10"
+        android:text="Download a file"/>
+
+</LinearLayout>
