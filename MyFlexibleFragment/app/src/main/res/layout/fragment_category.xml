@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_16"
+    android:background="@android:color/white"
+    tools:context=".fragment.CategoryFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ini halaman Category"
+        android:textAlignment="center"
+        android:layout_marginBottom="@dimen/margin_10"/>
+    <Button
+        android:id="@+id/btn_detail_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kategory Lifestyle"/>
+
+
+</LinearLayout>

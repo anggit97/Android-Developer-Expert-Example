@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_16"
+    android:background="@android:color/white"
+    tools:context="com.anggitprayogo.dicoding.myflexiblefragment.MainActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Siapa pelatih tersukses Machester United?"
+        android:layout_marginBottom="@dimen/margin_10"/>
+    <RadioGroup
+        android:id="@+id/rg_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/rb_saf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sir Alex Ferguson"
+            android:layout_marginBottom="@dimen/margin_10"/>
+        <RadioButton
+            android:id="@+id/rb_mou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jose Mourinho"
+            android:layout_marginBottom="@dimen/margin_10"/>
+        <RadioButton
+            android:id="@+id/rb_lvg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Louis Van Gaal"
+            android:layout_marginBottom="@dimen/margin_10"/>
+        <RadioButton
+            android:id="@+id/rb_moyes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="David Moyes"
+            android:layout_marginBottom="@dimen/margin_10"/>
+    </RadioGroup>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Tutup"
+            android:layout_marginRight="4dp"/>
+        <Button
+            android:id="@+id/btn_choose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Pilih"
+            android:layout_marginLeft="4dp"/>
+    </LinearLayout>
+</LinearLayout>
