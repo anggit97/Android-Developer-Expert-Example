@@ -147,6 +147,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 alarmPreference.setKEY_REPEATING_MESSAGE(etRepeatingMessage.getText().toString());
                 alarmReceiver.setRepeatingAlarm(this, AlarmReciever.TYPE_REPEATING, alarmPreference.getKEY_REPEATING_TIME(), alarmPreference.getKEY_REPEATING_MESSAGE());
                 break;
+            case R.id.btn_cancel_repeating_alarm:
+                alarmReceiver.cancelAlarm(this, AlarmReciever.TYPE_REPEATING);
+                break;
         }
     }
 }

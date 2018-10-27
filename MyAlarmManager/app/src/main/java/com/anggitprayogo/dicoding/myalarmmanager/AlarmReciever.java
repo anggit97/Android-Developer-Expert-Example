@@ -91,6 +91,7 @@ public class AlarmReciever extends BroadcastReceiver {
         int requestCode = type.equalsIgnoreCase(TYPE_ONE_TIME) ? NOTIF_ID_ONE_TIME : NOTIF_ID_REPEATING;
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
         alarmManager.cancel(pendingIntent);
+        Toast.makeText(context, "Repeating alarm canceled", Toast.LENGTH_SHORT).show();
     }
 
 }
