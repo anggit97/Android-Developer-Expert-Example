@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_16"
+    android:orientation="vertical"
+    tools:context="com.anggitprayogo.dicoding.myweatherloader.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="1"
+        >
+        <EditText
+            android:id="@+id/edit_kota"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/masukkan_nama_kota"
+            android:text="@string/id_jakarta_bandung_semararang"
+            android:layout_weight="0.8"/>
+        <Button
+            android:id="@+id/btn_kota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cari"
+            android:layout_weight="0.2"
+            />
+    </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listView"/>
+</LinearLayout>

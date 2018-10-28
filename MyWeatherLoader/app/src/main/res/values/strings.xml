@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyWeatherLoader</string>
+    <string name="masukkan_nama_kota">Masukan nama kota</string>
+    <string name="cari">cari</string>
+    <string name="nama_kota">Nama Kota</string>
+    <string name="temperatur">Temperatur</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="id_jakarta_bandung_semararang">1642911,1650357,1627896</string>
+</resources>
