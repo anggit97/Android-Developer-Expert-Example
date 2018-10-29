@@ -19,6 +19,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/pixel_google"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/description_google_pixel"
                 android:scaleType="fitXY"/>
 
             <TextView

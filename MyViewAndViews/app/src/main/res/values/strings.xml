@@ -20,4 +20,5 @@
     <string name="display">Display</string>
     <string name="size">Size</string>
     <string name="battery">Battery</string>
+    <string name="description_google_pixel">Foto google pixel</string>
 </resources>
