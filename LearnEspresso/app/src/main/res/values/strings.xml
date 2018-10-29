@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LearnEspresso</string>
+    <string name="hint_text">Masukan text</string>
+    <string name="ubah_text">Ubah Text</string>
+    <string name="pindah_activity">Pindah Activity</string>
+    <string name="result_view">Hasil</string>
+</resources>
