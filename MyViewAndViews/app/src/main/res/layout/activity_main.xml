@@ -39,13 +39,12 @@
         </FrameLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:textSize="32sp"
             android:textColor="@android:color/black"
             android:layout_marginStart="@dimen/dimen_16"
             android:layout_marginTop="@dimen/dimen_16"
-            android:text="@string/price"/>
+            android:text="@string/price"
+            style="@style/TextContent.Black"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,7 +52,8 @@
             android:layout_marginStart="@dimen/dimen_16"
             android:layout_marginTop="@dimen/dimen_8"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@string/stock"/>
+            android:text="@string/stock"
+            style="@style/TextContent.Subtitle"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -62,7 +62,8 @@
             android:layout_marginEnd="@dimen/dimen_16"
             android:layout_marginTop="@dimen/dimen_16"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:text="@string/content_text"/>
+            android:text="@string/content_text"
+            style="@style/TextContent"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,7 +71,8 @@
             android:layout_marginStart="@dimen/dimen_16"
             android:layout_marginEnd="@dimen/dimen_16"
             android:layout_marginTop="@dimen/dimen_16"
-            android:text="@string/spesifikasi"/>
+            android:text="@string/spesifikasi"
+            style="@style/TextContent.Subtitle"/>
 
         <TableLayout
             android:layout_width="match_parent"
@@ -88,7 +90,8 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:layout_marginEnd="@dimen/dimen_8"
-                    android:text="@string/display"/>
+                    android:text="@string/display"
+                    style="@style/TextSpec.Field"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -96,7 +99,8 @@
                     android:textSize="14sp"
                     android:layout_weight="1"
                     android:text="@string/content_specs_display"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/black"
+                    style="@style/TextSpec.Value"/>
 
             </TableRow>
 
@@ -107,7 +111,8 @@
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/size"/>
+                    android:text="@string/size"
+                    style="@style/TextSpec.Field"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -115,7 +120,8 @@
                     android:textSize="14sp"
                     android:layout_weight="1"
                     android:textColor="@android:color/black"
-                    android:text="@string/content_specs_size"/>
+                    android:text="@string/content_specs_size"
+                    style="@style/TextSpec.Value"/>
 
             </TableRow>
 
@@ -129,14 +135,16 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:layout_marginEnd="@dimen/dimen_8"
-                    android:text="@string/battery"/>
+                    android:text="@string/battery"
+                    style="@style/TextSpec.Field"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:layout_weight="1"
                     android:text="@string/content_specs_battery"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/black"
+                    style="@style/TextSpec.Value"/>
             </TableRow>
 
         </TableLayout>
@@ -149,7 +157,9 @@
             android:layout_marginTop="@dimen/dimen_16"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            style="@style/TextContent.Subtitle"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -169,7 +179,8 @@
                 android:layout_toRightOf="@id/profile_image"
                 android:text="Narenda Wicaksono"
                 android:textColor="@android:color/black"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                style="@style/TextContent"/>
         </RelativeLayout>
         <Button
             android:layout_width="match_parent"
@@ -177,7 +188,8 @@
             android:text="Beli"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            style="@style/ButtonGeneral"/>
 
     </LinearLayout>
 
