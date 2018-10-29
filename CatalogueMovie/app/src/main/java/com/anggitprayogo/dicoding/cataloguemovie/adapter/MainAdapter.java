@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,21 +35,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         this.context = context;
     }
 
-    public void setResults(ArrayList<MovieResponse.Results> results) {
-        this.results = results;
-        notifyDataSetChanged();
-    }
-
-    public void addResult(MovieResponse.Results result) {
-        results.add(result);
-        notifyDataSetChanged();
-    }
-
-    public void clearResults() {
-        results.clear();
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -60,6 +46,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         MovieResponse.Results model = results.get(i);
 
+        final int position = i;
+
         viewHolder.getTvDate().setText(model.getReleaseDate());
         viewHolder.getTvDesc().setText(model.getOverview());
         viewHolder.getTvTitle().setText(model.getTitle());
@@ -70,6 +58,33 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                     .thumbnail(Glide.with(context).load(R.drawable.loading))
                     .into(viewHolder.getIvMovie());
         }
+
+        viewHolder.getBtnDetail().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MovieResponse.Results movieResponse = new MovieResponse.Results();
+                movieResponse.setTitle(results.get(position).getTitle());
+                movieResponse.setBackdropPath(results.get(position).getBackdropPath());
+                movieResponse.setOverview(results.get(position).getOverview());
+                movieResponse.setVoteAverage(results.get(position).getVoteAverage());
+                movieResponse.setReleaseDate(results.get(position).getReleaseDate());
+
+                Intent intent = new Intent(v.getContext(), DetailMovieActivity.class);
+                intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movieResponse);
+
+                v.getContext().startActivity(intent);
+            }
+        });
+
+        viewHolder.getBtnShare().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.send_text)+" "+results.get(position).getTitle());
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
 
@@ -92,6 +107,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         TextView tvDesc;
         @BindView(R.id.tv_date)
         TextView tvDate;
+        @BindView(R.id.btn_detail)
+        Button btnDetail;
+        @BindView(R.id.btn_share)
+        Button btnShare;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -118,20 +137,28 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
         }
 
-        public ImageView getIvMovie() {
+        ImageView getIvMovie() {
             return ivMovie;
         }
 
-        public TextView getTvTitle() {
+        TextView getTvTitle() {
             return tvTitle;
         }
 
-        public TextView getTvDesc() {
+        TextView getTvDesc() {
             return tvDesc;
         }
 
-        public TextView getTvDate() {
+        TextView getTvDate() {
             return tvDate;
+        }
+
+        public Button getBtnDetail() {
+            return btnDetail;
+        }
+
+        public Button getBtnShare() {
+            return btnShare;
         }
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true"
     android:background="@android:color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -18,7 +19,7 @@
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/loading"
-            android:contentDescription="Image" />
+            android:contentDescription="@string/image_movie" />
 
 
         <LinearLayout
@@ -34,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:text="Dispicable me : Judul film"/>
+                tools:text="Dispicable me : Judul film"/>
 
             <TextView
                 android:id="@+id/tv_date"
@@ -55,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@android:color/darker_gray"
-                    android:text="Rate : "/>
+                    android:text="@string/rate"/>
 
                 <TextView
                     android:id="@+id/tv_rate"
@@ -63,8 +64,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
-                    android:layout_marginLeft="@dimen/dimen_5"
-                    android:text="7.5"/>
+                    android:layout_marginStart="@dimen/dimen_5"
+                    tools:text="7.5"/>
 
             </LinearLayout>
 
@@ -75,7 +76,7 @@
                 android:layout_marginTop="@dimen/dimen_16"
                 android:textSize="16sp"
                 android:textColor="@android:color/black"
-                android:text="Overview"/>
+                android:text="@string/overview"/>
 
             <TextView
                 android:id="@+id/tv_overview"

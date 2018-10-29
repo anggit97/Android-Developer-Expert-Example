@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Catalogue Movie</string>
+    <string name="hint_search">masukan kata kunci</string>
+    <string name="hint_search_button">Cari</string>
+    <string name="error_message_failed_to_fetch">Gagal fetch data</string>
+    <string name="rate">Nilai :</string>
+    <string name="overview">Ringkasan</string>
+    <string name="image_movie">Gambar Film</string>
+    <string name="title_activity_home_activtiy">HomeActivtiy</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Anggit Prayogo</string>
+    <string name="nav_header_subtitle">anggitprayogo@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Ganti Bahasa</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Kosong</string>
+    <string name="now_playing">SEDANG DIPUTAR</string>
+    <string name="up_coming">AKAN DATANG</string>
+    <string name="search_movie">Cari Film</string>
+    <string name="imageview">Gambar</string>
+    <string name="detail">Detil</string>
+    <string name="share">Berbagi</string>
+    <string name="empty_response">Pencarian Kosong</string>
+    <string name="importss">Impor</string>
+    <string name="gallery">Galeri</string>
+    <string name="slideshow">Tayangan Slide</string>
+    <string name="tools">Alat</string>
+    <string name="communicate">Komunikasi</string>
+    <string name="send">Kirim</string>
+</resources>

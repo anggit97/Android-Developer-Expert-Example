@@ -2,13 +2,16 @@ package com.anggitprayogo.dicoding.cataloguemovie.feature.mainactivity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.anggitprayogo.dicoding.cataloguemovie.R;
@@ -21,25 +24,21 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import dmax.dialog.SpotsDialog;
-import okhttp3.internal.Util;
 
-public class MainActivity extends AppCompatActivity implements MainView{
+public class MainActivity extends AppCompatActivity implements MainView {
 
     private final String TAG = getClass().getSimpleName();
 
     private ArrayList<MovieResponse.Results> results = new ArrayList<>();
     private MainPresenter presenter;
     private MainAdapter adapter;
-    private AlertDialog spotsDialogBuilder;
+    private String keyword;
 
-    @BindView(R.id.et_search)
-    EditText etSearch;
-    @BindView(R.id.btn_search)
-    Button btnSearch;
     @BindView(R.id.rv_movie)
     RecyclerView rvMovie;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,37 +49,93 @@ public class MainActivity extends AppCompatActivity implements MainView{
 
         ServiceGenerator serviceGenerator = new ServiceGenerator();
 
-        presenter = new MainPresenter(this,serviceGenerator, this);
-        spotsDialogBuilder = new SpotsDialog.Builder().setContext(this).build();
+        presenter = new MainPresenter(this, serviceGenerator, this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvMovie.setLayoutManager(linearLayoutManager);
-        rvMovie.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         adapter = new MainAdapter(results, this);
         rvMovie.setAdapter(adapter);
 
-
         presenter.getMovie("a");
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.getMovie(keyword);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override
-    public void tampilkanMovie() {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_activity, menu);
 
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search_view));
+        searchView.setQueryHint(getResources().getString(R.string.hint_search));
+        searchView.setIconifiedByDefault(true);
+        searchView.setFocusable(true);
+        searchView.setIconified(false);
+        searchView.clearFocus();
+        searchView.requestFocusFromTouch();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            Handler handler = new Handler();
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d(TAG, "onQueryTextSubmit: " + query);
+                keyword = query;
+                presenter.getMovie(query);
+                HideKeyboard.hideKeyboard(MainActivity.this);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.d(TAG, "onQueryTextChange: " + newText);
+
+                final String query = newText;
+
+                handler.removeCallbacksAndMessages(null);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        keyword = query;
+                        presenter.getMovie(query);
+                    }
+                }, 300);
+
+
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search_view:
+                return true;
+            default:
+                return true;
+        }
     }
 
     @Override
     public void showLoading() {
-        spotsDialogBuilder.show();
+        swipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public void hideLoading() {
-        spotsDialogBuilder.dismiss();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void showMovieResponseError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "showMovieResponseError: "+message);
     }
 
     @Override
@@ -93,20 +148,5 @@ public class MainActivity extends AppCompatActivity implements MainView{
         results.clear();
         results.addAll(body.getResults());
         adapter.notifyDataSetChanged();
-    }
-
-    @OnClick({R.id.btn_search})
-    public void onClick(View view){
-        switch (view.getId()){
-            case R.id.btn_search:
-                if (etSearch.getText().toString().isEmpty()){
-                    Toast.makeText(this, "kata kunci pencarian tidak boleh kosong", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                presenter.getMovie(etSearch.getText().toString());
-                HideKeyboard.hideKeyboard(this);
-                break;
-        }
     }
 }

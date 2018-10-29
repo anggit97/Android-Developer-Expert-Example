@@ -3,6 +3,7 @@ package com.anggitprayogo.dicoding.cataloguemovie.feature.mainactivity;
 import android.content.Context;
 import android.util.Log;
 
+import com.anggitprayogo.dicoding.cataloguemovie.BuildConfig;
 import com.anggitprayogo.dicoding.cataloguemovie.R;
 import com.anggitprayogo.dicoding.cataloguemovie.model.MovieResponse;
 import com.anggitprayogo.dicoding.cataloguemovie.network.EndpointClient;
@@ -27,8 +28,8 @@ public class MainPresenter {
 
     public void getMovie(String query) {
         view.showLoading();
-        Call<MovieResponse> call = serviceGenerator.createService(EndpointClient.class, context).searchMovie(ServiceGenerator.API_KEY,
-                ServiceGenerator.LANG, query);
+        Call<MovieResponse> call = serviceGenerator.createService(EndpointClient.class, context)
+                .searchMovie(BuildConfig.OPEN_WEATHER_MAP_API_KEY, ServiceGenerator.LANG, query);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
@@ -46,8 +47,8 @@ public class MainPresenter {
 
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
-                Log.d(TAG, "onFailure: ");
                 view.hideLoading();
+                Log.d(TAG, "onFailure: ");
                 view.showMovieResponseError(t.getMessage());
             }
         });

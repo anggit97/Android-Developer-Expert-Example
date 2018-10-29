@@ -11,17 +11,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.mainactivity.MainActivity" android:launchMode="singleTop">
+        <activity
+            android:name=".feature.mainactivity.MainActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".feature.home.HomeActivtiy">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".feature.home.HomeActivtiy"/>
+        </activity>
+        <activity
+            android:name=".feature.detailmovie.DetailMovieActivity"
+            android:parentActivityName=".feature.mainactivity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".feature.mainactivity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".feature.home.HomeActivtiy"
+            android:label="@string/title_activity_home_activtiy"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".feature.detailmovie.DetailMovieActivity" android:parentActivityName=".feature.mainactivity.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".feature.mainactivity.MainActivity"/>
         </activity>
     </application>
 

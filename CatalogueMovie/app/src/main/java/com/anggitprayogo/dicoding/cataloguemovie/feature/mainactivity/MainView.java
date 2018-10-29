@@ -4,8 +4,6 @@ import com.anggitprayogo.dicoding.cataloguemovie.model.MovieResponse;
 
 public interface MainView {
 
-    void tampilkanMovie();
-
     void showLoading();
 
     void hideLoading();

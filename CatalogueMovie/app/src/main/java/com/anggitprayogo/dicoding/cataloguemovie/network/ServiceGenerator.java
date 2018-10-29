@@ -15,7 +15,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
 
     public static final String BASE_URL_IMAGE = "http://image.tmdb.org/t/p/w185/";
-    public static final String API_KEY = "00fadd6af89412de4c1a3ecd7fe631f6";
     public static final String LANG = "en-US";
 
     private static String BASE_URL = "https://api.themoviedb.org/";

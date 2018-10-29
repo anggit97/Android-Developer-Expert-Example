@@ -1,6 +1,33 @@
 <resources>
     <string name="app_name">Catalogue Movie</string>
-    <string name="hint_search">masukan kata kunci</string>
-    <string name="hint_search_button">Cari</string>
-    <string name="error_message_failed_to_fetch">Gagal fetch data</string>
+    <string name="hint_search">Enter keyword</string>
+    <string name="hint_search_button">Search</string>
+    <string name="error_message_failed_to_fetch">Failed to fetch data</string>
+    <string name="rate">Rate :</string>
+    <string name="overview">Overview</string>
+    <string name="image_movie">Image Movie</string>
+    <string name="title_activity_home_activtiy">HomeActivtiy</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Anggit Prayogo</string>
+    <string name="nav_header_subtitle">anggitprayogo@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Change Language</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="now_playing">NOW PLAYING</string>
+    <string name="up_coming">UP COMING</string>
+    <string name="search_movie">Search Movie</string>
+    <string name="imageview">ImageView</string>
+    <string name="detail">Detail</string>
+    <string name="empty_response">Empty Search</string>
+    <string name="send_text">Check our new movie</string>
+    <string name="importss">Import</string>
+    <string name="gallery">Gallery</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="tools">Tools</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
 </resources>
