@@ -79,10 +79,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         viewHolder.getBtnShare().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.send_text)+" "+results.get(position).getTitle());
-                v.getContext().startActivity(intent);
+                Intent shareIntent = new Intent();
+                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, context.getString(R.string.send_text)+" "+results.get(position).getTitle());
+                v.getContext().startActivity(shareIntent);
             }
         });
 

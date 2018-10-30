@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyReadWriteFile</string>
+    <string name="file_new">File Baru</string>
+    <string name="file_open">Buka File</string>
+    <string name="file_save">Simpan File</string>
+    <string name="title">Judul</string>
+    <string name="clearing_file">Membersihkan file</string>
+</resources>
