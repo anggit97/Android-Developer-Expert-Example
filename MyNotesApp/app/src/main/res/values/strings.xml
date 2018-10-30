@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyNotesApp</string>
+    <string name="date">Tanggal</string>
+    <string name="title">Judul Note</string>
+    <string name="description">Deskripsi Note</string>
+    <string name="judul">Judul</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="submit">Submit</string>
+    <string name="hapus">Hapus</string>
+</resources>

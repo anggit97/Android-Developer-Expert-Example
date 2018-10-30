@@ -1,6 +1,8 @@
 package com.anggitprayogo.dicoding.soundpool;
 
+import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +15,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnSound, btnMediaPlayer, btnMediaPlayerStop;
     private int soundId, streamId;
     private SoundPool soundPool;
+    private MediaPlayer mediaPlayer;
     private boolean isSoundLoaded = false;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         soundId = soundPool.load(this, R.raw.music, 1);
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
+
+        intent = new Intent(this, MediaService.class);
+        intent.setAction(MediaService.ACTION_CREATE);
+        intent.setPackage(MediaService.ACTION_PACKAGE);
+        startService(intent);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(intent);
     }
 
     @Override
@@ -58,6 +75,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     soundPool.stop(streamId);
                     isSoundLoaded = true;
                 }
+                break;
+            case R.id.btn_mediaplayer:
+                intent.setAction(MediaService.ACTION_PLAY);
+                intent.setPackage(MediaService.ACTION_PACKAGE);
+                startService(intent);
+                break;
+            case R.id.btn_mediaplayer_stop:
+                intent.setAction(MediaService.ACTION_STOP);
+                intent.setPackage(MediaService.ACTION_PACKAGE);
+                startService(intent);
                 break;
         }
     }
