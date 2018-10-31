@@ -4,12 +4,13 @@ import android.provider.BaseColumns;
 
 public class DatabaseContract {
 
-    static String TABLE_NOTE = "note";
+    static final String TABLE_NOTES = "notes";
 
-    static final class NoteColumns implements BaseColumns{
+    static final class NOTE_COLUMNS implements BaseColumns{
 
-        static String TITLE = "title";
-        static String DESCRIPTION = "description";
-        static String DATE = "date";
+        static final String TITLE = "title";
+        static final String DESCRIPTION = "description";
+        static final String DATE = "date";
     }
+
 }

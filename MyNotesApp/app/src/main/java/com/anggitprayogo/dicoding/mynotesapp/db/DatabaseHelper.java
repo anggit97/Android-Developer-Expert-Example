@@ -6,20 +6,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
 
-    public static String DATABASE_NAME = "dbnoteapp";
-
+    public static final String DATABASE_NAME = "mynotes";
     private static final int DATABASE_VERSION = 1;
-
-    private static final String SQL_CREATE_TABLE_NOTE = String.format("CREATE TABLE %s" +
-            "(%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+    private static final String QUERY_CREATE_TABLE_NOTE = String.format("CREATE TABLE %s(" +
+            "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
             "%s TEXT NOT NULL," +
             "%s TEXT NOT NULL," +
             "%s TEXT NOT NULL);",
-            DatabaseContract.TABLE_NOTE,
-            DatabaseContract.NoteColumns._ID,
-            DatabaseContract.NoteColumns.TITLE,
-            DatabaseContract.NoteColumns.DESCRIPTION,
-            DatabaseContract.NoteColumns.DATE);
+            DatabaseContract.TABLE_NOTES,
+            DatabaseContract.NOTE_COLUMNS._ID,
+            DatabaseContract.NOTE_COLUMNS.TITLE,
+            DatabaseContract.NOTE_COLUMNS.DESCRIPTION,
+            DatabaseContract.NOTE_COLUMNS.DATE);
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -27,12 +25,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_TABLE_NOTE);
+        db.execSQL(QUERY_CREATE_TABLE_NOTE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS "+ DatabaseContract.TABLE_NOTE);
+        db.execSQL("DROP TABLE IF EXISTS "+DatabaseContract.TABLE_NOTES);
         onCreate(db);
     }
 }

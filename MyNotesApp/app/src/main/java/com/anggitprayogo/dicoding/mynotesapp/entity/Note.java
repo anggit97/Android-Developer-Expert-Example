@@ -10,6 +10,9 @@ public class Note implements Parcelable {
     private String description;
     private String date;
 
+    public Note() {
+    }
+
     public int getId() {
         return id;
     }
@@ -53,9 +56,6 @@ public class Note implements Parcelable {
         dest.writeString(this.title);
         dest.writeString(this.description);
         dest.writeString(this.date);
-    }
-
-    public Note() {
     }
 
     protected Note(Parcel in) {

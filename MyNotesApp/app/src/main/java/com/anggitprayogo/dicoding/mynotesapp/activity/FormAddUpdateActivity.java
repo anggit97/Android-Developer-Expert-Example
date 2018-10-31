@@ -18,6 +18,7 @@ import com.anggitprayogo.dicoding.mynotesapp.entity.Note;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class FormAddUpdateActivity extends AppCompatActivity implements View.OnClickListener{
@@ -65,6 +66,12 @@ public class FormAddUpdateActivity extends AppCompatActivity implements View.OnC
         if (isEdit){
             actionBarTitle = "Ubah";
             btnTitle = "Update";
+
+
+            edtTitle.setText(noteHelper.show(note.getId()).getTitle());
+            edtDescription.setText(noteHelper.show(note.getId()).getDescription());
+
+
         }else{
             actionBarTitle = "Tambah";
             btnTitle = "Add";
