@@ -13,4 +13,6 @@
     <string name="hint_search">Masukan kata kunci</string>
     <string name="clear_search">Clear Search</string>
     <string name="kosakata">Kosakata</string>
+    <string name="id_to_en">Indonesia ke Inggris</string>
+    <string name="en_to_id">Inggris ke Indonesia</string>
 </resources>

@@ -27,6 +27,11 @@ public class KamusHelper {
     }
 
 
+    public void close(){
+        sqLiteDatabase.close();
+    }
+
+
     /**
      *
      * @param word
@@ -42,10 +47,11 @@ public class KamusHelper {
                 tableSelected,
                 null,
                 DatabaseContract.TableKamus.KOSAKATA+" LIKE ?",
-                new String[]{word},
+                new String[]{"%"+word+"%"},
                 null,
                 null,
                 DatabaseContract.TableKamus._ID+ " ASC");
+
         cursor.moveToFirst();
         if(cursor.getCount() > 0){
             do {
@@ -72,8 +78,8 @@ public class KamusHelper {
         String sql = "insert into "+tableSelected+ "("+ DatabaseContract.TableKamus.KOSAKATA+","+ DatabaseContract.TableKamus.DESKRIPSI+")" +
                 "values(?,?);";
         SQLiteStatement sqLiteStatement = sqLiteDatabase.compileStatement(sql);
-        sqLiteStatement.bindString(0, kamus.getKosakata());
-        sqLiteStatement.bindString(1, kamus.getDeskripsi());
+        sqLiteStatement.bindString(1, kamus.getKosakata());
+        sqLiteStatement.bindString(2, kamus.getDeskripsi());
         sqLiteStatement.execute();
         sqLiteStatement.clearBindings();
     }

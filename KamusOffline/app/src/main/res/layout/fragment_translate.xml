@@ -31,7 +31,17 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progress_bar"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"/>
+
     <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/rv_results"
         android:layout_marginTop="@dimen/dimen_5"
         android:layout_width="match_parent"

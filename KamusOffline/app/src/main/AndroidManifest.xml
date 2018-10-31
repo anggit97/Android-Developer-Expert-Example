@@ -19,6 +19,7 @@
         <activity
             android:name=".activity.TranslateActivity"
             android:label="@string/title_activity_translate"/>
+
     </application>
 
 </manifest>
