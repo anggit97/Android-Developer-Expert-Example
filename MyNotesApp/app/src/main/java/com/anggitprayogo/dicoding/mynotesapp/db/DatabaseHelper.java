@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper{
 
     public static final String DATABASE_NAME = "mynotes";
-    public static final String TABLE_NAME_NOTE = DatabaseContract.TABLE_NOTES;
     private static final int DATABASE_VERSION = 1;
     private static final String QUERY_CREATE_TABLE_NOTE = String.format("CREATE TABLE %s(" +
             "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
