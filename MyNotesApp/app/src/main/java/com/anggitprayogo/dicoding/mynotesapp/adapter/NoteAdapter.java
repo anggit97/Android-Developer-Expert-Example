@@ -69,6 +69,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewholder
 
     @Override
     public int getItemCount() {
+        if (getListNotes() == null){
+            return 0;
+        }
         return getListNotes().getCount();
     }
 

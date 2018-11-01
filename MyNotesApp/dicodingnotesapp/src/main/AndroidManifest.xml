@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.anggitprayogo.dicoding.dicodingnotesapp">
 
-    <uses-permission android:name="com.anggitprayogo.dicoding.dicodingnotesapp.READ_DATABASE" />
-    <uses-permission android:name="com.anggitprayogo.dicoding.dicodingnotesapp.WRITE_DATABASE" />
+    <uses-permission android:name="com.anggitprayogo.dicoding.mynotesapp.READ_DATABASE" />
+    <uses-permission android:name="com.anggitprayogo.dicoding.mynotesapp.WRITE_DATABASE" />
 
 
     <application
@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.FormActivity"></activity>
+        <activity android:name=".activity.FormActivity"/>
     </application>
 
 </manifest>
