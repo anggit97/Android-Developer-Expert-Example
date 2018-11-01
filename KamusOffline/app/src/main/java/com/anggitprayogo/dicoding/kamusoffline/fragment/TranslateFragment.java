@@ -93,7 +93,6 @@ public class TranslateFragment extends Fragment {
                     public void run() {
                         if (!query.isEmpty()){
                             new SearchData().execute(query.toString());
-//                            adapter.getFilter().filter(query);
                         }
                     }
                 }, 500);
