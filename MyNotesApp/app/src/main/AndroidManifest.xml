@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.anggitprayogo.dicoding.mynotesapp">
 
+    <uses-permission android:name="com.anggitprayogo.dicoding.mynotesapp.READ_DATABASE" android:protectionLevel="normal"/>
+    <uses-permission android:name="com.anggitprayogo.dicoding.mynotesapp.WRITE_DATABASE" android:protectionLevel="normal"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.FormAddUpdateActivity"></activity>
+        <activity android:name=".activity.FormAddUpdateActivity"/>
+
+        <provider
+            android:authorities="com.anggitprayogo.dicoding.mynotesapp"
+            android:name=".provider.NoteProvider"
+            android:exported="true"
+            android:readPermission="com.anggitprayogo.dicoding.mynotesapp.READ_DATABASE"
+            android:writePermission="com.anggitprayogo.dicoding.mynotesapp.WRITE_DATABASE"/>
     </application>
 
 </manifest>
