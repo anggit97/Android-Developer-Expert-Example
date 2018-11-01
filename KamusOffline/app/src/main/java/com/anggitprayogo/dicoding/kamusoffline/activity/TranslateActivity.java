@@ -30,6 +30,7 @@ public class TranslateActivity extends AppCompatActivity
         setContentView(R.layout.activity_translate);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setActionBarTitle(getString(R.string.id_to_en));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -52,6 +53,10 @@ public class TranslateActivity extends AppCompatActivity
         fragmentTransaction.add(R.id.frame_container, fragment, TAG);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    public void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
     }
 
     @Override
@@ -98,8 +103,10 @@ public class TranslateActivity extends AppCompatActivity
         switch (id){
             case R.id.nav_id_to_en:
                 type = 0;
+                setActionBarTitle(getString(R.string.id_to_en));
                 break;
             case R.id.nav_en_to_id:
+                setActionBarTitle(getString(R.string.en_to_id));
                 type = 1;
                 break;
         }

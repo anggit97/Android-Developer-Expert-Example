@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.anggitprayogo.dicoding.kamusoffline.R;
 import com.anggitprayogo.dicoding.kamusoffline.db.KamusHelper;
@@ -23,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_logo)
     ImageView ivLogo;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     AppPrefrence appPrefrence;
     KamusHelper kamusHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,27 +42,44 @@ public class MainActivity extends AppCompatActivity {
         new LoadDataIdToEn().execute();
     }
 
-    class LoadDataIdToEn extends AsyncTask<Void, Void, Void>{
+    class LoadDataIdToEn extends AsyncTask<Void, Integer, Void> {
+
+        double progress;
+        double maxProgress = 100;
 
         @Override
         protected Void doInBackground(Void... voids) {
             Boolean isFirstRun = appPrefrence.isAppFirstRun();
 
-            if (isFirstRun){
+            if (isFirstRun) {
 
                 ArrayList<Kamus> kamusIdToEn = preLoadData(0);
                 ArrayList<Kamus> kamusEnToId = preLoadData(1);
+
+                progress = 30;
+                publishProgress((int) progress);
+                Double progressMaxInsert = 80.0;
+                Double progressDiff = (progressMaxInsert - progress) / kamusIdToEn.size();
 
                 kamusHelper.open();
 
                 kamusHelper.beginTransaction();
 
-                for (Kamus kamus : kamusIdToEn){
+                for (Kamus kamus : kamusIdToEn) {
                     kamusHelper.insertTransaction(kamus, 0);
+                    progress += progressDiff;
+                    publishProgress((int) progress);
                 }
 
-                for (Kamus kamus: kamusEnToId){
+                progress = 30;
+                publishProgress((int) progress);
+                progressMaxInsert = 80.0;
+                progressDiff = (progressMaxInsert - progress) / kamusEnToId.size();
+
+                for (Kamus kamus : kamusEnToId) {
                     kamusHelper.insertTransaction(kamus, 1);
+                    progress += progressDiff;
+                    publishProgress((int) progress);
                 }
 
                 kamusHelper.setTransaction();
@@ -67,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
 
                 kamusHelper.close();
 
-                appPrefrence.setAppFirstRun(true);
+                appPrefrence.setAppFirstRun(false);
 
-            }else{
+            } else {
                 try {
                     Thread.sleep(1000);
                     Intent intent = new Intent(MainActivity.this, TranslateActivity.class);
@@ -82,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
 
 
             return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            progressBar.setProgress(values[0]);
         }
 
         @Override
@@ -100,9 +126,9 @@ public class MainActivity extends AppCompatActivity {
 
         InputStream inputStream = null;
 
-        if (i == 0){
+        if (i == 0) {
             inputStream = getResources().openRawResource(R.raw.indonesia_english);
-        }else{
+        } else {
             inputStream = getResources().openRawResource(R.raw.english_indonesia);
         }
 
@@ -123,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
                 kamuses.add(kamus);
                 count++;
 
-            }while (line != null);
+            } while (line != null);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

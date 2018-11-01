@@ -12,7 +12,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_search">Masukan kata kunci</string>
     <string name="clear_search">Clear Search</string>
-    <string name="kosakata">Kosakata</string>
     <string name="id_to_en">Indonesia ke Inggris</string>
     <string name="en_to_id">Inggris ke Indonesia</string>
+    <string name="loading">Loading</string>
+    <string name="kosakata">Kosakata</string>
+    <string name="keterangan">Keterangan</string>
+    <string name="ex_keterangan">Keteranganya misalnya</string>
 </resources>

@@ -13,4 +13,21 @@
         android:src="@drawable/dicoding"
         android:contentDescription="@string/app_name" />
 
+    <ProgressBar
+        android:layout_below="@+id/iv_logo"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:id="@+id/progress_bar"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/progress_bar"
+        android:paddingBottom="@dimen/activity_vertical_margin"/>
+
 </RelativeLayout>

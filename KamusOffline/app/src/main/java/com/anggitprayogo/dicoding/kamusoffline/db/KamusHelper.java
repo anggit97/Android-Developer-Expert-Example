@@ -32,6 +32,32 @@ public class KamusHelper {
     }
 
 
+    public ArrayList<Kamus> getAllKosakata(int type){
+        ArrayList<Kamus> kamuses = new ArrayList<>();
+        String tableSelected = (type == 0) ? DatabaseContract.TABLE_ID_TO_EN : DatabaseContract.TABLE_EN_TO_ID;
+        Cursor cursor = sqLiteDatabase.query(
+                tableSelected,
+                null,
+                null,
+                null,
+                null,
+                null,
+                DatabaseContract.TableKamus._ID+ " ASC");
+
+        cursor.moveToFirst();
+        if(cursor.getCount() > 0){
+            do {
+                Kamus kamus = new Kamus();
+                kamus.setKosakata(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.TableKamus.KOSAKATA)));
+                kamus.setDeskripsi(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.TableKamus.DESKRIPSI)));
+                kamuses.add(kamus);
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        return kamuses;
+    }
+
     /**
      *
      * @param word

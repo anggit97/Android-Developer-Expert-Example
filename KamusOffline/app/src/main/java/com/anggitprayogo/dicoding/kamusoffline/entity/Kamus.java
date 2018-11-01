@@ -18,6 +18,10 @@ public class Kamus implements Parcelable {
     public Kamus() {
     }
 
+    public Kamus(String kosakata) {
+        this.kosakata = kosakata;
+    }
+
     public int getId() {
         return id;
     }

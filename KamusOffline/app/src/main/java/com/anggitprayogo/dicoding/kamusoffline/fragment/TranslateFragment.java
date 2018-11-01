@@ -2,6 +2,7 @@ package com.anggitprayogo.dicoding.kamusoffline.fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -74,6 +75,9 @@ public class TranslateFragment extends Fragment {
         kamusHelper.open();
 
         etQuery.addTextChangedListener(new TextWatcher() {
+
+            Handler handler = new Handler();
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -82,7 +86,18 @@ public class TranslateFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                new SearchData().execute(s.toString());
+                final String query = s.toString();
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!query.isEmpty()){
+                            new SearchData().execute(query.toString());
+//                            adapter.getFilter().filter(query);
+                        }
+                    }
+                }, 500);
+
             }
 
             @Override
