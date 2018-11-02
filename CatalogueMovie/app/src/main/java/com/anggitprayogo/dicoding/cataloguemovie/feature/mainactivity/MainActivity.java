@@ -1,14 +1,15 @@
 package com.anggitprayogo.dicoding.cataloguemovie.feature.mainactivity;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dmax.dialog.SpotsDialog;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
     RecyclerView rvMovie;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.app_bar_layout)
+    AppBarLayout appBarLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(null);
 
         ServiceGenerator serviceGenerator = new ServiceGenerator();
 
@@ -114,9 +124,17 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
+    public boolean onNavigateUp() {
+        return super.onNavigateUp();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search_view:
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return true;
@@ -135,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showMovieResponseError(String message) {
-        Log.d(TAG, "showMovieResponseError: "+message);
+        Log.d(TAG, "showMovieResponseError: " + message);
     }
 
     @Override

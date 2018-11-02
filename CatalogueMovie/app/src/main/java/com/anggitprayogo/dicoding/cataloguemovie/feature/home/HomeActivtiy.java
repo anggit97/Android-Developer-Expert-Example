@@ -10,6 +10,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +21,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.anggitprayogo.dicoding.cataloguemovie.R;
+import com.anggitprayogo.dicoding.cataloguemovie.feature.favourite.FavouriteFragment;
+import com.anggitprayogo.dicoding.cataloguemovie.feature.homefragment.HomeFragment;
 import com.anggitprayogo.dicoding.cataloguemovie.feature.mainactivity.MainActivity;
 import com.anggitprayogo.dicoding.cataloguemovie.feature.nowplaying.NowPlayingFragment;
 import com.anggitprayogo.dicoding.cataloguemovie.feature.upcoming.UpcomingFragment;
@@ -33,18 +36,12 @@ import butterknife.ButterKnife;
 public class HomeActivtiy extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     private final String TAG = getClass().getSimpleName();
-    private ViewPagerAdapter viewPagerAdapter;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.tab_layout)
-    TabLayout tabLayout;
     @BindView(R.id.app_bar_layout)
     AppBarLayout appBarLayout;
-    @BindView(R.id.view_pager)
-    ViewPager viewPager;
     @BindView(R.id.nav_view)
     NavigationView navView;
     @BindView(R.id.drawer_layout)
@@ -68,48 +65,8 @@ public class HomeActivtiy extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
+        showFragment(new HomeFragment());
 
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new NowPlayingFragment(), getString(R.string.now_playing));
-        viewPagerAdapter.addFragment(new UpcomingFragment(), getString(R.string.up_coming));
-        viewPager.setAdapter(viewPagerAdapter);
-        viewPager.setOffscreenPageLimit(2);
-    }
-
-    class ViewPagerAdapter extends FragmentStatePagerAdapter{
-
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentListTitle = new ArrayList<>();
-
-        ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int i) {
-            return mFragmentList.get(i);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentListTitle.get(position);
-        }
-
-        void addFragment(Fragment fragment, String title){
-            mFragmentList.add(fragment);
-            mFragmentListTitle.add(title);
-        }
     }
 
     @Override
@@ -151,24 +108,47 @@ public class HomeActivtiy extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    private void showFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_container, fragment, TAG);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        Fragment fragment = null;
 
-        } else if (id == R.id.nav_slideshow) {
+        switch (id){
+            case R.id.nav_home:
+                fragment = new HomeFragment();
+                setActionBarTitle(getString(R.string.home));
+                break;
+            case R.id.nav_search:
+                Intent toMainActivity = new Intent(HomeActivtiy.this, MainActivity.class);
+                startActivity(toMainActivity);
+                break;
+            case R.id.nav_star:
+                fragment = new FavouriteFragment();
+                setActionBarTitle(getString(R.string.favourite));
+                break;
+            case R.id.nav_settings:
+                Intent toChangeLanguage = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(toChangeLanguage);
+                break;
+        }
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (fragment != null){
+            showFragment(fragment);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

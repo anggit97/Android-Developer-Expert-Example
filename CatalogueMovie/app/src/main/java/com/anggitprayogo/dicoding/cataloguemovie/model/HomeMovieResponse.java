@@ -104,6 +104,73 @@ public class HomeMovieResponse {
         @SerializedName("vote_count")
         private int voteCount;
 
+        public Results() {
+        }
+
+        public void setReleaseDate(String releaseDate) {
+            this.releaseDate = releaseDate;
+        }
+
+        public void setOverview(String overview) {
+            this.overview = overview;
+        }
+
+        public boolean isAdult() {
+            return adult;
+        }
+
+        public void setAdult(boolean adult) {
+            this.adult = adult;
+        }
+
+        public void setBackdropPath(String backdropPath) {
+            this.backdropPath = backdropPath;
+        }
+
+        public void setGenreIds(List<Integer> genreIds) {
+            this.genreIds = genreIds;
+        }
+
+        public void setOriginalTitle(String originalTitle) {
+            this.originalTitle = originalTitle;
+        }
+
+        public void setOriginalLanguage(String originalLanguage) {
+            this.originalLanguage = originalLanguage;
+        }
+
+        public void setPosterPath(String posterPath) {
+            this.posterPath = posterPath;
+        }
+
+        public void setPopularity(double popularity) {
+            this.popularity = popularity;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setVoteAverage(double voteAverage) {
+            this.voteAverage = voteAverage;
+        }
+
+        public boolean isVideo() {
+            return video;
+        }
+
+        public void setVideo(boolean video) {
+            this.video = video;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setVoteCount(int voteCount) {
+            this.voteCount = voteCount;
+        }
+
         public String getReleaseDate() {
             return releaseDate;
         }
