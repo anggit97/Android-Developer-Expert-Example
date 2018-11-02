@@ -3,6 +3,8 @@
     package="com.anggitprayogo.dicoding.cataloguemovie">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="com.anggitprayogo.dicoding.cataloguemovie.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.anggitprayogo.dicoding.cataloguemovie.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:allowBackup="true"
@@ -37,6 +39,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="com.anggitprayogo.dicoding.cataloguemovie"
+            android:name=".provider.MovieProvider"
+            android:exported="true"
+            android:readPermission="com.anggitprayogo.dicoding.cataloguemovie.READ_DATABASE"
+            android:writePermission="com.anggitprayogo.dicoding.cataloguemovie.WRITE_DATABASE"/>
+
     </application>
 
 </manifest>

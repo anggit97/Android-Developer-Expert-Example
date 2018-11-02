@@ -28,13 +28,13 @@ public class MovieHelper {
 
     public Cursor query(){
         return sqLiteDatabase.query(DatabaseContract.TABLE_FAVOURITE, null,
-                null, null, null, null, DatabaseContract.COLUMN_FAVOURITE.ID+ " ASC");
+                null, null, null, null, DatabaseContract.COLUMN_FAVOURITE.ID+ " DESC");
     }
 
     public Cursor queryByIdProvider(String id){
         return sqLiteDatabase.query(DatabaseContract.TABLE_FAVOURITE, null,
                 DatabaseContract.COLUMN_FAVOURITE.ID+"=?",new String[]{id},
-                null, null, DatabaseContract.COLUMN_FAVOURITE.ID+ " ASC");
+                null, null, DatabaseContract.COLUMN_FAVOURITE.ID+ " DESC");
     }
 
     public long insert(ContentValues contentValues){

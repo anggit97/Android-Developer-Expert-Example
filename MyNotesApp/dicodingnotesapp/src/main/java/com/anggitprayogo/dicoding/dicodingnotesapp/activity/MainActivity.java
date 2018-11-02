@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.anggitprayogo.dicoding.dicodingnotesapp.R;
 import com.anggitprayogo.dicoding.dicodingnotesapp.adapter.DicodingNotesAdapter;
@@ -96,5 +97,6 @@ public class MainActivity extends AppCompatActivity implements
         Intent intent = new Intent(MainActivity.this, FormActivity.class);
         intent.setData(Uri.parse(CONTENT_URI+"/"+id));
         startActivity(intent);
+        Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
     }
 }

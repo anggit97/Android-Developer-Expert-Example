@@ -1,6 +1,7 @@
 package com.anggitprayogo.dicoding.cataloguemovie.feature.detailmovie;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -189,7 +190,11 @@ public class DetailMovieActivity extends AppCompatActivity {
 
                 return true;
             case R.id.action_share:
-                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+                Intent shareIntent = new Intent();
+                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.send_text));
+                startActivity(shareIntent);
                 return true;
             case android.R.id.home:
                 finish();

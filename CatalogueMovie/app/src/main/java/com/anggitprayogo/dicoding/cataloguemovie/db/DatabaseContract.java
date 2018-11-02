@@ -12,14 +12,11 @@ public class DatabaseContract {
 
         public final static String RELEASE_DATE =  "release_date";
         public final static String OVERVIEW = "overview";
-        public final static String ADULT = "adult";
         public final static String BACKDROP_PATH = "backdroppath";
-        public final static String ORIGINAL_TITLE = "original_title";
         public final static String POSTER_PATH = "poster_path";
         public final static String POPULARITY = "popularity";
         public final static String TITLE = "title";
         public final static String VOTE_AVARAGE = "vote_avarage";
-        public final static String VIDEO = "video";
         public final static String VOTE_COUNT = "vote_count";
         public final static String ID = "id";
     }
@@ -27,6 +24,7 @@ public class DatabaseContract {
     public static final String AUTHORITY = "com.anggitprayogo.dicoding.cataloguemovie";
 
     public static final Uri CONTENT_URI = new Uri.Builder()
+            .scheme("content")
             .authority(AUTHORITY)
             .appendPath(TABLE_FAVOURITE)
             .build();

@@ -104,19 +104,8 @@ public class FavouriteFragment extends Fragment {
 
             if (cursor.getCount() > 0){
                 do {
-                    HomeMovieResponse.Results result = new HomeMovieResponse.Results();
-                    result.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.COLUMN_FAVOURITE.ID))));
-                    result.setVoteCount(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.COLUMN_FAVOURITE.VOTE_COUNT))));
-                    result.setVoteAverage(Double.parseDouble(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.COLUMN_FAVOURITE.VOTE_AVARAGE))));
-                    result.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.COLUMN_FAVOURITE.TITLE)));
-                    result.setPosterPath(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.COLUMN_FAVOURITE.POSTER_PATH)));
-                    result.setBackdropPath(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.COLUMN_FAVOURITE.BACKDROP_PATH)));
-                    result.setReleaseDate(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.COLUMN_FAVOURITE.RELEASE_DATE)));
-                    result.setOverview(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.COLUMN_FAVOURITE.OVERVIEW)));
-                    result.setPopularity(Double.parseDouble(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.COLUMN_FAVOURITE.POPULARITY))));
-                    results.add(result);
+                    results.add(new HomeMovieResponse.Results(cursor));
                     cursor.moveToNext();
-
                 }while (!cursor.isAfterLast());
             }else{
                 return null;

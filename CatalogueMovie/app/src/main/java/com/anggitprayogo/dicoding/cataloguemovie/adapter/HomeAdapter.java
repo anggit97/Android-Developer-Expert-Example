@@ -132,8 +132,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
                     movieResponse.setTitle(results.get(getAdapterPosition()).getTitle());
                     movieResponse.setBackdropPath(results.get(getAdapterPosition()).getBackdropPath());
                     movieResponse.setOverview(results.get(getAdapterPosition()).getOverview());
-                    movieResponse.setVoteAverage(results.get(getAdapterPosition()).getVoteAverage());
                     movieResponse.setReleaseDate(results.get(getAdapterPosition()).getReleaseDate());
+                    movieResponse.setVoteAverage(results.get(getAdapterPosition()).getVoteAverage());
+                    movieResponse.setVoteCount(results.get(getAdapterPosition()).getVoteCount());
+                    movieResponse.setReleaseDate(results.get(getAdapterPosition()).getReleaseDate());
+                    movieResponse.setPosterPath(results.get(getAdapterPosition()).getPosterPath());
+                    movieResponse.setPopularity(results.get(getAdapterPosition()).getPopularity());
+                    movieResponse.setId(results.get(getAdapterPosition()).getId());
+
 
                     Intent intent = new Intent(v.getContext(), DetailMovieActivity.class);
                     intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movieResponse);
