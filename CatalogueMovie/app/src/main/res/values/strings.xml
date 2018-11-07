@@ -40,4 +40,7 @@
     <string name="failed_add_to_favourite">Gagal menambahkan ke favourite</string>
     <string name="failed_remove_from_favourite">failed to remove from favourite</string>
     <string name="message_favourite_empty">You have no favourite yet.</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="label_have_no_favourite_movie_yet">Belum ada film favourite</string>
 </resources>

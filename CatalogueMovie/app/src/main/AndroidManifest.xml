@@ -3,8 +3,13 @@
     package="com.anggitprayogo.dicoding.cataloguemovie">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <permission android:name="com.anggitprayogo.dicoding.cataloguemovie.READ_DATABASE" android:protectionLevel="normal"/>
-    <permission android:name="com.anggitprayogo.dicoding.cataloguemovie.WRITE_DATABASE" android:protectionLevel="normal"/>
+
+    <permission
+        android:name="com.anggitprayogo.dicoding.cataloguemovie.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.anggitprayogo.dicoding.cataloguemovie.WRITE_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +24,7 @@
             android:parentActivityName=".feature.home.HomeActivtiy">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".feature.home.HomeActivtiy"/>
+                android:value=".feature.home.HomeActivtiy" />
         </activity>
         <activity
             android:name=".feature.detailmovie.DetailMovieActivity"
@@ -31,8 +36,8 @@
         <activity
             android:name=".feature.home.HomeActivtiy"
             android:label="@string/title_activity_home_activtiy"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,12 +46,26 @@
         </activity>
 
         <provider
-            android:authorities="com.anggitprayogo.dicoding.cataloguemovie"
             android:name=".provider.MovieProvider"
+            android:authorities="com.anggitprayogo.dicoding.cataloguemovie"
             android:exported="true"
             android:readPermission="com.anggitprayogo.dicoding.cataloguemovie.READ_DATABASE"
-            android:writePermission="com.anggitprayogo.dicoding.cataloguemovie.WRITE_DATABASE"/>
+            android:writePermission="com.anggitprayogo.dicoding.cataloguemovie.WRITE_DATABASE" />
 
+        <receiver android:name=".widget.FavouriteWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favourite_widget_info" />
+        </receiver>
+        <service
+            android:name=".service.StackWidgetService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
     </application>
 
 </manifest>
