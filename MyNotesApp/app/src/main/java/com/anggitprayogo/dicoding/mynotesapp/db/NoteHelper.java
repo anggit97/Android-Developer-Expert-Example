@@ -96,4 +96,35 @@ public class NoteHelper {
     public int delete(int id){
         return database.delete(DatabaseContract.TABLE_NOTES, DatabaseContract.NOTE_COLUMNS._ID+"='"+id+"'",null);
     }
+
+    public Cursor queryByIdProvider(String id){
+        return database.query(DatabaseContract.TABLE_NOTES, null,
+                DatabaseContract.NOTE_COLUMNS._ID+"=?",
+                new String[]{id},
+                null,
+                null,
+                null);
+    }
+
+    public Cursor queryProvider(){
+        return database.query(DatabaseContract.TABLE_NOTES,
+                null,
+                null,
+                null,
+                null,
+                null,
+                DatabaseContract.NOTE_COLUMNS._ID+ " DESC");
+    }
+
+    public long insertProvider(ContentValues contentValues){
+        return database.insert(DatabaseContract.TABLE_NOTES, null, contentValues);
+    }
+
+    public int updateProvider(ContentValues contentValues, String id){
+        return database.update(DatabaseContract.TABLE_NOTES, contentValues, DatabaseContract.NOTE_COLUMNS._ID +"=?",new String[]{id});
+    }
+
+    public int deleteProvider(String id){
+        return database.delete(DatabaseContract.TABLE_NOTES, DatabaseContract.NOTE_COLUMNS._ID+"=?", new String[]{id});
+    }
 }

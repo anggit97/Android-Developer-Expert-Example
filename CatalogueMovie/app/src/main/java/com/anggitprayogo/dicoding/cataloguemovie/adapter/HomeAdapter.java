@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anggitprayogo.dicoding.cataloguemovie.R;
+import com.anggitprayogo.dicoding.cataloguemovie.db.DatabaseContract;
 import com.anggitprayogo.dicoding.cataloguemovie.feature.detailmovie.DetailMovieActivity;
 import com.anggitprayogo.dicoding.cataloguemovie.model.MovieResponse;
 import com.anggitprayogo.dicoding.cataloguemovie.model.HomeMovieResponse;
@@ -51,12 +52,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         viewHolder.getTvDesc().setText(model.getOverview());
         viewHolder.getTvTitle().setText(model.getTitle());
 
-        if (model.getBackdropPath() != null){
+        if (model.getPosterPath() != null){
             Glide.with(context)
                     .load(ServiceGenerator.BASE_URL_IMAGE.concat(model.getPosterPath()))
                     .thumbnail(Glide.with(context).load(R.drawable.loading))
                     .into(viewHolder.getIvMovie());
         }
+
 
         viewHolder.getBtnDetail().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +68,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
                 movieResponse.setBackdropPath(results.get(position).getBackdropPath());
                 movieResponse.setOverview(results.get(position).getOverview());
                 movieResponse.setVoteAverage(results.get(position).getVoteAverage());
+                movieResponse.setVoteCount(results.get(position).getVoteCount());
                 movieResponse.setReleaseDate(results.get(position).getReleaseDate());
+                movieResponse.setPosterPath(results.get(position).getPosterPath());
+                movieResponse.setPopularity(results.get(position).getPopularity());
+                movieResponse.setId(results.get(position).getId());
 
                 Intent intent = new Intent(v.getContext(), DetailMovieActivity.class);
                 intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movieResponse);
@@ -126,8 +132,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
                     movieResponse.setTitle(results.get(getAdapterPosition()).getTitle());
                     movieResponse.setBackdropPath(results.get(getAdapterPosition()).getBackdropPath());
                     movieResponse.setOverview(results.get(getAdapterPosition()).getOverview());
-                    movieResponse.setVoteAverage(results.get(getAdapterPosition()).getVoteAverage());
                     movieResponse.setReleaseDate(results.get(getAdapterPosition()).getReleaseDate());
+                    movieResponse.setVoteAverage(results.get(getAdapterPosition()).getVoteAverage());
+                    movieResponse.setVoteCount(results.get(getAdapterPosition()).getVoteCount());
+                    movieResponse.setReleaseDate(results.get(getAdapterPosition()).getReleaseDate());
+                    movieResponse.setPosterPath(results.get(getAdapterPosition()).getPosterPath());
+                    movieResponse.setPopularity(results.get(getAdapterPosition()).getPopularity());
+                    movieResponse.setId(results.get(getAdapterPosition()).getId());
+
 
                     Intent intent = new Intent(v.getContext(), DetailMovieActivity.class);
                     intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movieResponse);

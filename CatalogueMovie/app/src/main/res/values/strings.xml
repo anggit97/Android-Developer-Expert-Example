@@ -30,4 +30,14 @@
     <string name="communicate">Communicate</string>
     <string name="share">Share</string>
     <string name="send">Send</string>
+    <string name="settings">Setting</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favourite">Favourite</string>
+    <string name="release_date">Release Date</string>
+    <string name="remove_from_favourite">Mengahpus movie dari favourite</string>
+    <string name="add_to_favourite">Menambahkan movie ke favourite</string>
+    <string name="failed_add_to_favourite">Gagal menambahkan ke favourite</string>
+    <string name="failed_remove_from_favourite">failed to remove from favourite</string>
+    <string name="message_favourite_empty">You have no favourite yet.</string>
 </resources>

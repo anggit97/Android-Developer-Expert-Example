@@ -1,7 +1,10 @@
 package com.anggitprayogo.dicoding.mynotesapp.entity;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.anggitprayogo.dicoding.mynotesapp.db.DatabaseContract;
 
 public class Note implements Parcelable {
 
@@ -9,6 +12,13 @@ public class Note implements Parcelable {
     private String title;
     private String description;
     private String date;
+
+    public Note(Cursor cursor){
+        this.id = DatabaseContract.getColumnInt(cursor, DatabaseContract.NOTE_COLUMNS._ID);
+        this.title = DatabaseContract.getColumnString(cursor, DatabaseContract.NOTE_COLUMNS.TITLE);
+        this.description = DatabaseContract.getColumnString(cursor, DatabaseContract.NOTE_COLUMNS.DESCRIPTION);
+        this.date = DatabaseContract.getColumnString(cursor, DatabaseContract.NOTE_COLUMNS.DATE);
+    }
 
     public Note() {
     }
