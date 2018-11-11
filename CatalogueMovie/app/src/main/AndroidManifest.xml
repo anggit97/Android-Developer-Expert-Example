@@ -35,7 +35,6 @@
         </activity>
         <activity
             android:name=".feature.home.HomeActivtiy"
-            android:label="@string/title_activity_home_activtiy"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -65,7 +64,9 @@
             android:name=".service.StackWidgetService"
             android:enabled="true"
             android:exported="false"
-            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <receiver android:name=".reciever.AlarmReciever" android:enabled="true" android:exported="false"/>
+        <activity android:name=".feature.settings.SettingsActivity"/>
     </application>
 
 </manifest>

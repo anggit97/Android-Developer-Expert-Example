@@ -25,9 +25,14 @@ import com.anggitprayogo.dicoding.cataloguemovie.feature.favourite.FavouriteFrag
 import com.anggitprayogo.dicoding.cataloguemovie.feature.homefragment.HomeFragment;
 import com.anggitprayogo.dicoding.cataloguemovie.feature.mainactivity.MainActivity;
 import com.anggitprayogo.dicoding.cataloguemovie.feature.nowplaying.NowPlayingFragment;
+import com.anggitprayogo.dicoding.cataloguemovie.feature.settings.SettingsActivity;
 import com.anggitprayogo.dicoding.cataloguemovie.feature.upcoming.UpcomingFragment;
+import com.anggitprayogo.dicoding.cataloguemovie.prefrence.PrefrenceUtil;
+import com.anggitprayogo.dicoding.cataloguemovie.reciever.AlarmReciever;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,6 +42,8 @@ public class HomeActivtiy extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private final String TAG = getClass().getSimpleName();
+    private AlarmReciever alarmReciever;
+    private PrefrenceUtil prefrenceUtil;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -67,6 +74,35 @@ public class HomeActivtiy extends AppCompatActivity
 
         showFragment(new HomeFragment());
 
+        alarmReciever = new AlarmReciever();
+        prefrenceUtil = new PrefrenceUtil(this);
+
+        if (!prefrenceUtil.isDailyRemainderExist()){
+            setupDialyRemainder();
+        }
+
+        if (!prefrenceUtil.isReleaseRemainderExists()){
+            setupReleaseRemainder();
+        }
+
+    }
+
+    private void setupDialyRemainder() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 7);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+        prefrenceUtil.setDailyDate(simpleDateFormat.format(calendar.getTime()));
+    }
+
+    private void setupReleaseRemainder() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+        prefrenceUtil.setReleaseDate(simpleDateFormat.format(calendar.getTime()));
     }
 
     @Override
@@ -142,8 +178,8 @@ public class HomeActivtiy extends AppCompatActivity
                 setActionBarTitle(getString(R.string.favourite));
                 break;
             case R.id.nav_settings:
-                Intent toChangeLanguage = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-                startActivity(toChangeLanguage);
+                Intent toSettingActivity = new Intent(HomeActivtiy.this, SettingsActivity.class);
+                startActivity(toSettingActivity);
                 break;
         }
 

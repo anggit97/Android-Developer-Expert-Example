@@ -3,23 +3,24 @@ package com.anggitprayogo.dicoding.cataloguemovie.widget;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.anggitprayogo.dicoding.cataloguemovie.R;
+import com.anggitprayogo.dicoding.cataloguemovie.model.HomeMovieResponse;
+import com.anggitprayogo.dicoding.cataloguemovie.network.ServiceGenerator;
 import com.anggitprayogo.dicoding.cataloguemovie.service.StackWidgetService;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-import static com.anggitprayogo.dicoding.cataloguemovie.widget.FavouriteWidget.EXTRA_ITEM;
+import static com.anggitprayogo.dicoding.cataloguemovie.db.DatabaseContract.CONTENT_URI;
 
 public class StackRemoteViewFactory implements StackWidgetService.RemoteViewsFactory{
 
-    private List<Bitmap> bitmaps = new ArrayList<>();
+    private Cursor cursor;
     private Context context;
     private int widgetAppid;
 
@@ -30,11 +31,7 @@ public class StackRemoteViewFactory implements StackWidgetService.RemoteViewsFac
 
     @Override
     public void onCreate() {
-        bitmaps.add(BitmapFactory.decodeResource(context.getResources(), R.drawable.background));
-        bitmaps.add(BitmapFactory.decodeResource(context.getResources(), R.drawable.background));
-        bitmaps.add(BitmapFactory.decodeResource(context.getResources(), R.drawable.background));
-        bitmaps.add(BitmapFactory.decodeResource(context.getResources(), R.drawable.background));
-        bitmaps.add(BitmapFactory.decodeResource(context.getResources(), R.drawable.background));
+        cursor = context.getContentResolver().query(CONTENT_URI, null, null, null, null);
     }
 
     @Override
@@ -44,28 +41,39 @@ public class StackRemoteViewFactory implements StackWidgetService.RemoteViewsFac
 
     @Override
     public void onDestroy() {
-
+        if (cursor != null) {
+            cursor.close();
+        }
     }
 
     @Override
     public int getCount() {
-        Log.d("SIZE", "getCount: "+bitmaps.size());
-        return bitmaps.size();
+        return cursor == null ? 0 : cursor.getCount();
     }
 
     @Override
     public RemoteViews getViewAt(int position) {
+        HomeMovieResponse.Results resultItem = getItem(position);
+
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_item);
-        remoteViews.setTextViewText(R.id.tv_date, "Tanggal");
-        remoteViews.setImageViewBitmap(R.id.imageView, bitmaps.get(position));
 
-        Bundle bundle = new Bundle();
-        bundle.putInt(EXTRA_ITEM, position);
-        Intent fillIntent = new Intent();
-        fillIntent.putExtras(bundle);
+        Bitmap bmp = null;
 
-        remoteViews.setOnClickFillInIntent(R.id.imageView, fillIntent);
+        try {
+            bmp = Glide.with(context)
+                    .asBitmap()
+                    .load(ServiceGenerator.BASE_URL_IMAGE.concat(resultItem.getPosterPath()))
+                    .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                    .get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        remoteViews.setTextViewText(R.id.tv_date_release,resultItem.getReleaseDate());
+        remoteViews.setImageViewBitmap(R.id.imageView, bmp);
+
         return remoteViews;
+
     }
 
     @Override
@@ -80,11 +88,19 @@ public class StackRemoteViewFactory implements StackWidgetService.RemoteViewsFac
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
+    }
+
+    private HomeMovieResponse.Results getItem(int position) {
+        if (!cursor.moveToPosition(position)) {
+            throw new IllegalStateException("Position invalid!");
+        }
+
+        return new HomeMovieResponse.Results(cursor);
     }
 }

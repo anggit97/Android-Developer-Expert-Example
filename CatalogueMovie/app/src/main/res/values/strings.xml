@@ -43,4 +43,15 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="label_have_no_favourite_movie_yet">Belum ada film favourite</string>
+    <string name="label_change_language">Change Language</string>
+    <string name="label_change">Change</string>
+    <string name="label_daily_remainder">Daily Remainder</string>
+    <string name="label_release_remainder">Release Remainder</string>
+    <string name="label_on">On</string>
+    <string name="label_settings">Settings</string>
+    <string name="label_off">Off</string>
+    <string name="message_daily_remainder_on">daily remainder is on</string>
+    <string name="message_cancle_daily_remainder">Cancel daily remainder</string>
+    <string name="message_release_remainder_on">Release remainder is on</string>
+    <string name="message_cancle_release_remainder">Cancel release remainder</string>
 </resources>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <ImageView
@@ -12,4 +13,15 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/background" />
+
+    <TextView
+        android:id="@+id/tv_date_release"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textSize="14sp"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        tools:text="Tanggal "/>
 </LinearLayout>
